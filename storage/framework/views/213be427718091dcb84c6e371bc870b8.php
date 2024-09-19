@@ -1,0 +1,1 @@
+<h1>Mail</h1><?php /**PATH C:\xampp\htdocs\premiumMangalMandap\resources\views\emails\test.blade.php ENDPATH**/ ?>

@@ -1,0 +1,1 @@
+Your One Time Password is <?php echo e($otp); ?><?php /**PATH C:\xampp\htdocs\premiumMangalMandap\resources\views\emails\otp.blade.php ENDPATH**/ ?>
