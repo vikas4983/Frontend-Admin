@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <head>
@@ -69,20 +70,17 @@
     <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh">
         <div class="d-flex flex-column justify-content-between">
             <div class="row justify-content-center">
-                <div class="col-lg-6 col-xl-12 col-md-10 ">
+                <div class="col-lg-12 col-xxl-12 col-md-12 ">
                     <div class="card card-default mb-0">
                         <div class="card-header pb-0">
                             <div class="app-brand w-100 d-flex justify-content-center border-bottom-0">
                                 <a class="w-auto pl-0" href="">
-
-
                                     <img src="https://mangalmandap.com/images/mangal_logo.jpg" height="70px"
                                         width="800px" alt="Mono">
                                     <span class="brand-name text-dark"></span>
                                 </a>
                             </div>
                         </div>
-
                         <div class="card-body px-5 pb-5 pt-0">
                             <h4 class="text-dark text-center mb-5"></h4>
                             {{-- @if ($errors->any())
@@ -94,7 +92,6 @@
                                     </ul>
                                 </div>
                             @endif --}}
-
                             <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @php

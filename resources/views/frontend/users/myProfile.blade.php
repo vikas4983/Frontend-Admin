@@ -39,8 +39,11 @@
         <div class="row">
             <div class="col-xxl-3 col-xl-4 col-xs-16 col-sm-16">
                 <div class="thumbnail gt-margin-bottom-0">
-                    <img src="{{ asset('storage/user/images/' . ($user->image ?? 'male-default.jpg')) }}" alt="User Image"
-                        class="img-responsive gtFullWidth">
+                    <img src="{{ isset($user->image) && $user->image ? asset('storage/users/images/' . $user->image) : ($user->gender == 'male' ? asset('storage/users/images/male-default.jpg') : asset('storage/users/images/female-default.jpg')) }}"
+                        class="img-responsive gtFullWidth" alt="User Image">
+
+                    {{-- <img src="{{ asset('storage/users/images/' . ($user->image ?? 'male-default.jpg')) }}" alt="User Image" --}}
+                    {{-- class="img-responsive gtFullWidth"> --}}
                     <a href="https://matrimonialphpscript.com/premium-demo-2/my-photo" class="gt-view-caption">
                         Edit Profile Picture </a>
                 </div>
@@ -1450,7 +1453,7 @@
                     },
 
                     success: function(response) {
-                        console.log(response);
+
 
                         $('#alert-container').html(`
                         

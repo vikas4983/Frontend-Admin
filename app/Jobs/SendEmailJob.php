@@ -18,16 +18,18 @@ class SendEmailJob implements ShouldQueue
     protected $emailTemplate;
 
     // Constructor receives $admin and $emailTemplate when dispatched
+
     public function __construct($admin, $emailTemplate)
     {
         $this->admin = $admin;
         $this->emailTemplate = $emailTemplate;
     }
 
+
     // Execute the job
     public function handle(): void
     {
-        
+
         if ($this->admin && $this->emailTemplate) {
             Mail::to($this->admin->email)->send(new Email($this->admin, $this->emailTemplate));
         }

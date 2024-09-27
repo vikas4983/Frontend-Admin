@@ -52,6 +52,7 @@ class MobileLoginController extends Controller
 
             return redirect('admin-login')->with('error', " Admin not found!");
         }
+        
         $otp = rand(1000, 9999);
         $latestOTP = MobileLogin::where('admin_id', $admin->id)->latest('id')->first();
         session(['latestOTP' => $latestOTP]);
@@ -68,7 +69,7 @@ class MobileLoginController extends Controller
                 'expires_at' => $currentDateTime
             ]);
 
-
+           
             $emailTemplate = EmailTemplate::where('status', 1)->where('name', $name)->first();
             SendEmailJob::dispatch($admin, $emailTemplate);
             $this->smsApiService->OTP($admin); // BulkSmsPlansApi
@@ -77,7 +78,7 @@ class MobileLoginController extends Controller
 
             return view('verify_otp', [
                 'admin' =>
-                $admin,
+                    $admin,
                 'success' => 'OTP has been sent successfully!'
             ]);
         } catch (\Exception $e) {
@@ -117,7 +118,7 @@ class MobileLoginController extends Controller
             $this->smsApiService->OTP($admin); // Using BulkSmsPlans API
             $this->AdminEmailService->configureMailer($admin, $emailTemplate);
             //$this->TwilioSmsService->resendOTP($admin); // Using Twilio API
-            return  response()->json(['success' => true, 'message' => 'Resend OTP sent successfully!']);
+            return response()->json(['success' => true, 'message' => 'Resend OTP sent successfully!']);
         } catch (\Exception $e) {
 
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
@@ -136,9 +137,11 @@ class MobileLoginController extends Controller
             ->where('expires_at', '>', now())
             ->first();
         if (!$mobileLogin) {
-            $admin = Admin::with(['otps' => function ($query) {
-                $query->latest('id')->first();
-            }])->first();
+            $admin = Admin::with([
+                'otps' => function ($query) {
+                    $query->latest('id')->first();
+                }
+            ])->first();
             return view('verify_otp', [
                 'admin' => $admin,
                 'error' => 'Incorrect OTP or OTP expired'
@@ -188,7 +191,7 @@ class MobileLoginController extends Controller
         // $this->TwilioSmsService->sendSms($admin); // Twilio Api
         return view('admin-forgot-password-form', [
             'admin' =>
-            $admin,
+                $admin,
             'success' => 'OTP has been sent successfully!'
         ]);
     }
@@ -204,9 +207,11 @@ class MobileLoginController extends Controller
             ->where('expires_at', '>', now())
             ->first();
 
-        $admin = Admin::with(['otps' => function ($query) {
-            $query->latest('id')->first();
-        }])->first();
+        $admin = Admin::with([
+            'otps' => function ($query) {
+                $query->latest('id')->first();
+            }
+        ])->first();
         if (!$mobileLogin) {
             return view('admin-forgot-password-form', [
                 'admin' => $admin,

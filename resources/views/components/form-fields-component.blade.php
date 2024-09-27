@@ -1,6 +1,6 @@
 @foreach ($fields as $field)
     {{-- @dump($field) --}}
-   
+
     @switch($field['type'])
         @case('email')
             <x-input-component :name="$field['name']" :label="$field['label']" :rules="$field['rules']" type="email" />

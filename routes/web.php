@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MemberOtpController;
+use App\Http\Controllers\UserOtpController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\countries\CityController;
 use App\Http\Controllers\admin\countries\CountryController;
@@ -72,6 +74,14 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//User Registration
+Route::post('registration', [MemberController::class, 'store'])->name('registration');
+Route::get('verification', [MemberController::class, 'verification'])->name('verification');
+Route::post('otp/validate', [MemberOtpController::class, 'validateOtp'])->name('otp.validate');
+Route::post('otp/resend', [MemberOtpController::class, 'otpResend'])->name('otp.resend');
+
+
 //Footer
 Route::view('aboutUs', 'aboutUs');
 Route::view('faq', 'faq');
@@ -87,10 +97,17 @@ Route::post('changePassword', [MemberController::class, 'changePassword']);
 Route::view('frontend.users.myProfile', 'frontend.users.myProfile')->name('myProfile');
 
 
+
 //
 Route::resource('logos', LogoFaviconController::class);
 Route::resource('favicons', FaviconController::class);
-// User Upadte
+Route::resource('emailTemplates', EmailTemplateController::class);
+Route::resource('menus', MenuController::class);
+
+
+
+
+// User Update
 //Route::post('userUpdate/{id}', [UserController::class, 'userUpdate']);
 Route::post('userUpdate/{id}', [UserController::class, 'userUpdate'])->name('userUpdate');
 
@@ -158,7 +175,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::resource('banners', BannerController::class);
     Route::get('dashboard', [DashboardController::class, 'dashboard']);
     Route::resource('cmsPages', CmsPageController::class);
-    Route::resource('menus', MenuController::class);
+    
     Route::resource('profileids', ProfileIdController::class);
     Route::resource('emailSettings', EmailSettingController::class);
     Route::resource('siteSettings', SiteSettingController::class);
@@ -170,7 +187,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::resource('spotelights', SpoteLightController::class);
     Route::get('user-orders', [UserController::class, 'paidusersorders']);
     Route::resource('paymentgateways', PaymentGatewayController::class);
-    Route::resource('emailTemplates', EmailTemplateController::class);
+   
     Route::resource('modelCounts', ModelCountController::class);
     Route::resource('adminMenus', AdminMenuController::class);
     // CMS Delete,Active,InActive  Route
@@ -265,6 +282,5 @@ Route::prefix('admin')->group(function () {
     // Admin Auth
     Route::middleware(['admin'])->group(function () { });
 });
-
 
 Route::get('/mail', [EmailController::class, 'sendWelcomeEmail']);

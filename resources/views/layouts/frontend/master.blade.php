@@ -26,7 +26,6 @@
 
     <!--GOOGLE FONTS-->
     <link
-   
         href="{{ isset($favicons->name) && !empty($favicons->name)
             ? asset('storage/admin/logo-favicon/favicons/' . $favicons->name)
             : asset('assets/auth/images/favicon.png') }}"
@@ -59,45 +58,139 @@
     <div id="body" style="display:none">
         <div id="wrap">
             <div id="main">
+                <header class="container gtHeaderForm">
+                    <div class="row">
+                        {{-- {{ isset($logos->name) && !empty($logos->name)
+                            ? asset('storage/admin/logo-favicon/logos/' . $logo->name)
+                            : asset('assets/auth/images/logo.png') }} --}}
+                        <!-- Logo -->
+                        <div class="col-xxl-5 col-xl-4 col-xs-8 col-md-8 col-lg-5">
+                            <a href="/" class="ripplelink">
+                                <img src="{{ isset($logos->name) && $logos->name ? asset('storage/admin/logo-favicon/logos/' . $logos->name) : asset('storage/admin/logo-favicon/logos/mangal_logo-removebg-preview.png') }}"
+                                    class="img-responsive gt-header-logo">
+                            </a>
+
+                        </div>
+                        <!-- /. Logo -->
+                        <!-- Header login form -->
+                        <div
+                            class="col-xxl-8 col-xl-10 col-lg-11 col-xs-16 col-sm-16 col-md-16 pull-right mt-20 hidden-xs hidden-sm hidden-md">
+                            <div class="row">
+                                <form action="{{ route('login') }}" method="post" id="headerloginForm">
+                                    @csrf
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 form-group mt-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1"><i
+                                                    class="fa fa-envelope fa-fw"></i></span>
+                                            <input type="text" class="gt-form-control" name="email" id="email"
+                                                placeholder="Enter your login id " aria-describedby="basic-addon1"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 form-group mt-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon2"><i
+                                                    class="fa fa-unlock-alt fa-fw"></i></span>
+                                            <input type="password" class="gt-form-control"
+                                                placeholder="Enter your password" name="password" id="password"
+                                                aria-describedby="basic-addon2" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-4 col-xl-4 col-lg-4 form-group mt-10">
+                                        <input type="submit" class="btn gt-btn-orange btn-block gt-btn-lg"
+                                            name="member_login" value="LOGIN">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row">
+                                <div class="col-xxl-5 pull-right text-right mb-5">
+                                    <a href="forgot-password" class="gt-text-Grey">Forgot Password ?</a>
+                                </div>
+                                <div class="col-xxl-6 pull-right text-right mb-5">
+                                    <a href="#loginWithOTP" class="gt-text-Grey" data-toggle="modal">Login with OTP</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.Header login form -->
+
+                        <!-- Header login mobile button-->
+                        <div class="col-xs-8 visible-xs visible-sm visible-md text-right">
+                            <a class="btn gt-btn-orange mt-15" role="button" data-toggle="collapse"
+                                href="#collapseHeadLogin" aria-expanded="false" aria-controls="collapseHeadLogin">
+                                Login </a>
+                        </div>
+                        <!-- /.Header login mobile button -->
+                    </div>
+                    <!-- Header login form for mobile -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="collapse" id="collapseHeadLogin">
+                                <div class="row">
+                                    <form action="login" method="post" id="headerloginFormMobile" class="mt-15">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 form-group mt-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="username_mobile"><i
+                                                        class="fa fa-envelope fa-fw"></i></span>
+                                                <input type="text" class="gt-form-control" name="username"
+                                                    id="username_mobile" placeholder="Enter your login id"
+                                                    aria-describedby="username_mobile" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 form-group mt-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="password_mobile"><i
+                                                        class="fa fa-unlock-alt fa-fw"></i></span>
+                                                <input type="password" class="gt-form-control"
+                                                    placeholder="Enter your password" name="password"
+                                                    id="password_mobile" aria-describedby="password_mobile" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-4 col-xl-4 col-lg-4 form-group mt-10">
+                                            <input type="submit" class="btn gt-btn-orange btn-block gt-btn-lg"
+                                                name="member_login" value="LOGIN">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xxl-5 pull-right text-right">
+                                        <a href="forgot-password-password" class="gt-text-Grey">Forgot Password ?</a>
+                                    </div>
+                                    <div class="col-xxl-6 pull-right text-right mb-5">
+                                        <a href="#loginWithOTP" class="gt-text-Grey" data-toggle="modal">Login with
+                                            OTP</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /. Header login form for mobile -->
+                </header>
                 <!-- Email id Verification -->
                 <!-- /.Email id Verification -->
                 <!-- Header & Menu -->
-                <nav class="navbar inPrem2Nav">
+                <nav class="navbar gt-navbar-green flat mb-0">
                     <div class="container">
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            {{-- <img src="{{ asset('frontend/assets/images/favicons/2351709316771bottom-couple.png') }}"
-                                class="img-responsive gt-header-logo"> --}}
-                            <img src="{{ asset('frontend/assets/images/logos/mangal_logo-removebg-preview.png') }}"
-                                class="img-responsive gt-header-logo">
-                        </a>
-                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <!-- Mobile Menu Button -->
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
+                                data-target="#bs-example-navbar-collapse-1"
+                                style="background-color:rgba(247,247,247,1.00);color:rgba(0,0,0,1.00) !important;">
+                                <span>MENU</span>
                             </button>
                         </div>
+                        <!-- /.Mobile Menu Button -->
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <!-- Menu tabs -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <!--<ul class="nav navbar-nav navbar-left inPrem2Logo hidden-xs hidden-sm hidden-md">
-                                    <li>
-                                        <a href="index" class="ripplelink">
-                                            <img src="{{ url('frontend/img/logo.png') }}" class="img-responsive gt-header-logo">
-                                        </a>
-                                    </li>
-                                </ul>-->
-
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="active ripplelink"><a href="{{ url('/') }}"
-                                        class="inPrem2Link">Home</a></li>
+                            <ul class="nav navbar-nav navbar-left">
+                                <li class="active ripplelink"><a href="{{url('/')}}"><i
+                                            class="fas fa-home mr-10 fa-lg"></i>Home</a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle ripplelink inPrem2Link"
-                                        data-toggle="dropdown" role="button" aria-expanded="false">
-                                        <span class="mr-5">Search</span><span class="fa fa-angle-down"></span>
+                                    <a href="#" class="dropdown-toggle ripplelink" data-toggle="dropdown"
+                                        role="button" aria-expanded="false">
+                                        <span class="mr-5"><i
+                                                class="fas fa-search mr-10 fa-lg"></i>Search</span><span
+                                            class="fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu flat" role="menu">
                                         <li><a href="search?gt-quick-search">Quick Search</a></li>
@@ -109,19 +202,33 @@
                                     </ul>
                                 </li>
 
-                                <!--                                        <li class="ripplelink"><a href="success-story.php"><i class="fas fa-users mr-10 fa-lg"></i>Success Story</a></li>
-                                    -->
+                                <li class="ripplelink"><a href="{{ url('successStory') }}"><i
+                                            class="fas fa-users mr-10 fa-lg"></i>Success Story</a></li>
 
-                                <li class="ripplelink"><a href="{{ url('plans') }}" class="inPrem2Link">Plans</a>
+                                <li class="ripplelink"><a href="{{ url('plans') }}"><i
+                                            class="fas fa-id-card-alt mr-10 fa-lg"></i>Membership</a></li>
+
+                                <li class="ripplelink"><a href="{{ url('help') }}"><i
+                                            class="fa fa-phone-square mr-10 fa-lg"></i>Contact Us</a></li>
+
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li
+                                    class="active ripplelink gt-border-right-green gt-border-left-green gtBorderRightSMXS0 gtBorderLeftSMXS0">
+                                    <a href="{{route('login')}}"><i class="fas fa-sign-in-alt mr-10 fa-lg"></i>Login</a>
                                 </li>
 
-                                <li class="ripplelink"><a href="{{ url('help') }}" class="inPrem2Link">Help</a></li>
-                                <a href="{{ url('login') }}" class="btn gt-btn-green"><i
-                                        class="fas fa-lock mr-10 font-15"></i>Login</a>
+                                <li class="ripplelink gt-border-right-green gtBorderRightSMXS0">
+                                    <a href="{{url('/')}}"><i class="fas fa-pen-square mr-10 fa-lg"></i>Signup</a>
+                                </li>
+
                             </ul>
+
                         </div>
+                        <!-- /.Menu tabs -->
                     </div>
                 </nav>
+
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@
 <head>
     <!-- Required Meta -->
     <meta charset="utf-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
@@ -31,7 +31,7 @@
     @yield('styles') @yield('font-awesome-cdn')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/48403ccd1a.js" crossorigin="anonymous"></script>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('frontend/assets/js/jquery.min.js') }}"></script>
 
@@ -98,10 +98,10 @@
 
                                     <!-- Username & last login details -->
                                     @php
-                                    //dd($user);
-                                    $latestPayment = $user->payments()->orderBy('id', 'desc')->first();
+
+                                        $latestPayment = $user->payments()->orderBy('id', 'desc')->first();
                                     @endphp
-                                  
+
                                     <div class="col-xxl-11 col-xs-12 col-md-11">
                                         <h5 class="gt-margin-bottom-5 gt-margin-top-5">
                                             <b>{{ $user->name ?? 'Gaust' }}</b> : <b><span
@@ -505,7 +505,7 @@
             </div>
 
             <!-- Jquery Js-->
-            
+
             <!-- Bootstrap & Green Js -->
             <script src="{{ asset('frontend/assets/js/bootstrap.js') }}"></script>
             <script src="{{ asset('frontend/assets/js/green.js') }}"></script>
@@ -586,7 +586,6 @@
             }
         });
     });
-    
 </script>
 
-            <script src="{{ asset('frontend/assets/js/custom-js/user-update-modal.js') }}"></script>
+{{-- <script src="{{ asset('frontend/assets/js/custom-js/user-update-modal.js') }}"></script> --}}

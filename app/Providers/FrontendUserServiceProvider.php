@@ -28,10 +28,10 @@ class FrontendUserServiceProvider extends ServiceProvider
         //         '$prefix' => $prefix,
         //     ]);
         // });
-        View::composer(['layouts.main-master', 'dashboard','frontend.users.myProfile','frontend.search.quick'], function ($view) {
+        View::composer(['layouts.main-master', 'frontend.settings.changePassword', 'dashboard', 'frontend.users.myProfile', 'frontend.search.quick'], function ($view) {
             $user = Auth::user();
             $prefix = ProfileId::where('status', 1)->latest()->first();
-            
+
             $view->with([
                 'user' => $user,
                 'prefix' => $prefix, // Removed the extra $ sign

@@ -27,13 +27,12 @@
                                     </div>
                                 @endif
                                 <h2 class="inPageTitle fontMerriWeather text-center mt-15 inThemeOrange">
-                                    {{  trans('auth.login') }}
+                                    {{ trans('auth.login') }}
                                 </h2>
                                 <p class="inPageSubTitle text-center mb-30">And search your life partner</p>
 
                                 @php
                                     $fields = config('formFields.login');
-                                    // dump($fields);
                                 @endphp
 
                                 <x-form-fields-component :fields="$fields" />

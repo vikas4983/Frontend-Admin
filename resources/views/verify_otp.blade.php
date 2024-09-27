@@ -188,7 +188,7 @@ if (!function_exists('obfuscateMobileInline')) {
                                             the correct OTP.</p> --}}
                                         <input type="hidden" name="mobile" id="mobile"
                                             value="{{ $admin->mobile ?? '' }}">
-                                            
+
                                     </div>
 
                                     <div class="col-md-12">
@@ -204,8 +204,7 @@ if (!function_exists('obfuscateMobileInline')) {
                                 </div>
                             </form>
                             <form id="resend-otp-form" action="{{ url('resend-otp') }}" method="POST">
-                                <input type="hidden" name="ResendOTP" id="ResendOTP"
-                                            value="ResendOTP">
+                                <input type="hidden" name="ResendOTP" id="ResendOTP" value="ResendOTP">
                                 @csrf
                                 <div class="d-flex justify-content-center mb-3">
                                     <button type="submit" id="resend-otp" disabled
@@ -276,24 +275,21 @@ if (!function_exists('obfuscateMobileInline')) {
                 if (countdown <= 0) {
                     clearInterval(timer);
                     var resendOtpButton = document.getElementById('resend-otp');
-                    resendOtpButton.disabled = false; // Enable the button after countdown
-                    resendOtpButton.innerText = 'Resend OTP'; // Set the button text
-                    resendOtpButton.style.color = '#ffff'; // Set the text color
-                    resendOtpButton.style.backgroundColor = '#9E6DE0'; // Set the text color
+                    resendOtpButton.disabled = false;
+                    resendOtpButton.innerText = 'Resend OTP';
+                    resendOtpButton.style.color = '#ffff';
+                    resendOtpButton.style.backgroundColor = '#9E6DE0';
                 }
             }, 1000); // Decrease countdown every second
         }
-    
+
         document.getElementById('resend-otp-form').addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent the default form submission
-            console.log('click');
             const mobile = document.querySelector('input[name="mobile"]').value;
             const ResendOTP = document.querySelector('input[name="ResendOTP"]').value;
-              console.log('Mobile:', mobile);
-              console.log('ResendOTP:', ResendOTP);
-    
-    // Pause execution in the browser's developer tools
-    
+
+            // Pause execution in the browser's developer tools
+
             fetch('{{ url('resend-otp') }}', {
                     method: 'POST',
                     headers: {
@@ -302,10 +298,10 @@ if (!function_exists('obfuscateMobileInline')) {
                     },
                     body: JSON.stringify({
                         mobile: mobile,
-                       ResendOTP: ResendOTP
+                        ResendOTP: ResendOTP
                     })
-                    
-                    
+
+
                 })
                 .then(response => {
                     if (!response.ok) {
@@ -314,12 +310,11 @@ if (!function_exists('obfuscateMobileInline')) {
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Response Data:', data);
                     document.getElementById('send-otp-success')?.remove();
                     document.getElementById('send-otp-error')?.remove();
                     const alertContainer = document.getElementById('alert-container-resend');
                     alertContainer.innerHTML = ''; // Clear previous alerts
-    
+
                     if (data.success) {
                         alertContainer.innerHTML = `
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -336,7 +331,7 @@ if (!function_exists('obfuscateMobileInline')) {
                                 successAlert.classList.add('fade');
                             }
                         }, 5000);
-    
+
                         document.getElementById('resend-otp').disabled = true; // Disable the button again
                         startCountdown(); // Start the countdown
                     } else {
@@ -363,11 +358,11 @@ if (!function_exists('obfuscateMobileInline')) {
                     `;
                 });
         });
-    
+
         // Initial countdown
         startCountdown();
     </script>
-    
+
 </body>
 
 </html>

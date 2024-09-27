@@ -23,11 +23,11 @@ class UpdateEmailSettingRequest extends FormRequest
     {
         return [
             'host' => 'sometimes|required|string|max:50',
-            'email' => 'sometimes|required|email|unique:email_settings,email',
+            'email' => 'sometimes|required|email|',
             'port' => 'sometimes|required|integer|min:1|max:65535',
             'password' => 'sometimes|required|min:6|max:255',
             'status' => 'required|in:0,1',
         ];
-        
+
     }
 }
